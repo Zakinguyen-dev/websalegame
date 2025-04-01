@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import Main from "./pages/Main";
+import AuthForm from "./components/AuthForm";
+export const AppContext = React.createContext();
 
 function App() {
+  const [library, setLibrary] = useState([]);
+  const [bag, setBag] = useState([]);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Kiểm tra trạng thái đăng nhập khi ứng dụng khởi động
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (userId) {
+      setIsAuthenticated(true); // Nếu có userId, đánh dấu đã đăng nhập
+    }
+  }, []);
+
+  // Hàm xử lý đăng nhập
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+  };
+
+  // Hàm xử lý đăng xuất
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("userId");
+    setIsAuthenticated(false); // Đặt lại trạng thái chưa đăng nhập
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider
+      value={{
+        library,
+        setLibrary,
+        bag,
+        setBag,
+        isAuthenticated,
+        handleLogout, // Thêm handleLogout vào context để Header có thể dùng
+      }}
+    >
+      {isAuthenticated ? <Main /> : <AuthForm onLogin={handleLogin} />}
+    </AppContext.Provider>
   );
 }
 

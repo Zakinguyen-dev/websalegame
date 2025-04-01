@@ -1,0 +1,98 @@
+.sideMenu {
+  width: 20%;
+  height: 100%;
+  padding: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  background: var(--bgColor); /* Custom background color from CSS variables */
+  box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.35); /* Shadow effects for a 3D look */
+  display: flex;
+  flex-direction: column; /* Items inside the sidebar will be aligned vertically */
+  transition: 1s; /* Transition effect for smooth changes */
+}
+.sideMenu .logo {
+  font-family: "Bauhaus 93"; /* Custom font-family for a distinct logo style */
+  position: relative; /* Allows positioning adjustments if necessary */
+  text-decoration: none; /* Removes any text decoration (like underline) */
+  display: inline-flex; /* Flexbox layout for inline elements */
+  align-items: center; /* Centers the items vertically */
+  gap: 15px; /* Adds space between items inside the flex container */
+  color: #ffffff; /* Sets the text color to white */
+  font-size: 3.5em; /* Large font size for the logo */
+  font-weight: 600; /* Makes the font slightly bold */
+  letter-spacing: 1px; /* Increases space between letters for readability */
+  text-transform: uppercase; /* Converts text to uppercase for emphasis */
+}
+
+.sideMenu .nav {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 15px;
+}
+.sideMenu .nav li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  transition: 0.5s;
+  background: var(--bgColor);
+  border-radius: 20px;
+  padding: 10px 20px;
+  width: 100%;
+}
+.sideMenu .nav li a:hover,
+.sideMenu .nav li a.active {
+  box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+    5px 5px 15px rgba(0, 0, 0, 0.35);
+}
+.sideMenu .social {
+  position: absolute;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 20px;
+  transition: 0.5s;
+}
+.sideMenu .social li a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  transition: 0.3s;
+}
+.sideMenu .social li a:hover {
+  color: var(--second);
+}
+.sideMenu .social li .share:hover {
+  background: var(--primary);
+}
+.sideMenu .social li .youtube:hover {
+  background: var(--primary);
+}
+.sideMenu.active {
+  width: 7%;
+  transition: 1s;
+  overflow: hidden;
+  align-items: center;
+}
+.sideMenu.active .brand,
+.sideMenu.active .navName {
+  display: none;
+}
+
+.sideMenu.active .nav li a {
+  font-size: 1.8em;
+}
+
+.sideMenu.active .social {
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
